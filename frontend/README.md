@@ -4,4 +4,5 @@
 - ```V_23.05.06 기능``` <br>
 1. 현재 시간 표기<br>
 2. 현재 날씨와 기온, 나의 위치 표기([OpenWeatherMap ](https://openweathermap.org)API를 사용)<br>
+![Untitled](https://user-images.githubusercontent.com/131790445/236662677-7925333d-434e-4f3e-b88a-de26ba44ebc9.gif)
 ***
