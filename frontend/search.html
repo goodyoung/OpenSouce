@@ -13,7 +13,7 @@
         <h1>따릉이와 나의 거리 조회 서비스</h1>
         <div class="search_div">
             <form id="search_bar">
-                <input type="text" placeholder="현재 나의 위치 입력" required>
+                <input type="text" placeholder="현재 나의 위치 입력" name="location" id="location_input" required>
                 <button class="search_button" type="submit" >
                     <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
                 </button>
@@ -33,5 +33,24 @@
 
     <script src="./js/clock.js"></script>
     <script src="./js/weather.js"></script>
+
+    <script>
+        const myLocationInput = document.querySelector('#location_input');
+        const formElement = document.querySelector('form');
+
+        myLocationInput.addEventListener('focus', () => {
+            myLocationInput.placeholder = '';
+        });
+
+        myLocationInput.addEventListener('blur', () =>{
+            myLocationInput.placeholder = '현재 나의 위치 입력';
+        });
+
+        formElement.addEventListener('submit', (event)=>{
+            event.preventDefault();
+            const myLocation = myLocationInput.value;
+            console.log(`입력받은 나의 위치 : ${myLocation}`);
+        });
+    </script>
 </body>
 </html>
