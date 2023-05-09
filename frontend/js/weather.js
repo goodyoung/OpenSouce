@@ -1,4 +1,4 @@
-const API_KEY="904f2fe1a5a35a647ceda442a230b413";
+const API_KEY="";
 
 const weatherDescKo = {
      "201": '가벼운 비를 동반한 천둥구름' ,
