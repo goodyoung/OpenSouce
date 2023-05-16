@@ -1,3 +1,11 @@
+//JSON파일 불러오는 함수
+fetch("./json_data.json")
+    .then((res) => res.json())
+    .then((stations) => {
+        console.log(stations);
+        console.log(stations.stationLatitude[0]);
+    })
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.576022, 126.9769), // 지도의 중심좌표
@@ -6,16 +14,18 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
-
+console.log(`1`);
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
+console.log(`2`);
 
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('광화문', function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
+// 현재위치로 좌표를 검색합니다
+geocoder.addressSearch('서울 종로구 사직로 161', function(result, status) {
+    // 정상적으로 검색이 완료됐으면
+	console.log(`3`);
+	console.log(status);
+	console.log(kakao.maps.services.Status.OK);
      if (status === kakao.maps.services.Status.OK) {
-
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
         // 결과값으로 받은 위치를 마커로 표시합니다
@@ -32,5 +42,7 @@ geocoder.addressSearch('광화문', function(result, status) {
 
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
-    } 
-});  
+    }else{
+		console.log(`fail`);
+	}
+}); 
