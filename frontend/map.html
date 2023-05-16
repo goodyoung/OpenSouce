@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>지도 생성하기</title>
-    
-</head>
-<body>
-<!-- 지도를 표시할 div 입니다 -->
-<div id="map" style="width:500px;height:350px;"></div>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>★따릉이★</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </head>
+    <body>
+    <!-- 지도를 표시할 div 입니다 -->
+    <h2 id="clock" class="map_clock">00:00:00</h2>
+    <div class="weather_div">
+        <div id="weather-icon"></div>
+        <div id="weather">
+            <span></span>
+            <br>
+            <span></span>
+        </div>
+    </div>
+    <div class="main_div2">
+        <img src="./image/logo.png" style="width:300px;">
+        <h1>따릉이와 나의 거리 조회 서비스</h1>
+        <h5>입력 받은 현재 위치 : 광화문</h5>
+        <div id="map"></div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=">//appkey에 발급받은 APIKEY 삽입</script>
+        <script src="./js/map.js"></script>
+    </div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey="></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
-
-// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-</script>
-</body>
+    <script src="./js/clock.js"></script>
+    <script src="./js/weather.js"></script>
+    </body>
 </html>
