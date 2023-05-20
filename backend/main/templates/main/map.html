@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <title>★따릉이★</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </head>
+    <body>
+    <!-- 지도를 표시할 div 입니다 -->
+    <h2 id="clock" class="map_clock">00:00:00</h2>
+    <div class="weather_div">
+        <div id="weather-icon"></div>
+        <div id="weather">
+            <span></span>
+            <br>
+            <span></span>
+        </div>
+    </div>
+    <div class="main_div2">
+        <img src="./image/logo.png" style="width:300px;">
+        <h1>따릉이와 나의 거리 조회 서비스</h1>
+        <h5>입력 받은 현재 위치 : 광화문</h5>
+        <div id="map"></div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- appkey의 값으로 발급받은 API KEY 삽입 -->
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services,clusterer"></script>
+        <script src="./js/map.js"></script>
+    </div>
+    <script src="./js/clock.js"></script>
+    <script src="./js/weather.js"></script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %} <!--load 파일이름-->
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'open/css/style.css' %}"> <!--css틀-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>★따릉이★</title>
+</head>
+<body>
+    <div class="main_div">
+        <img src="{% static 'open/image/logo.png' %}" style="width:300px;"> <!--img틀-->
+        <h1>따릉이와 나의 거리 조회 서비스</h1>
+        <div class="search_div">
+            <form id="search_bar">
+                <input type="text" placeholder="현재 나의 위치 입력" name="location" id="location_input" required>
+                <button class="search_button" type="submit" >
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+                </button>
+            </form>
+        </div>
+        <h2 id="clock">00:00:00</h2>
+
+        <div class="weather_div">
+            <div id="weather-icon"></div>
+            <div id="weather">
+                <span></span>
+                <br>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'open/js/clock.js'%}"></script> <!--js 틀-->
+    <script src="{% static 'open/js/weather.js' %}"></script>
+
+    <script>
+        const myLocationInput = document.querySelector('#location_input');
+        const formElement = document.querySelector('form');
+
+        myLocationInput.addEventListener('focus', () => {
+            myLocationInput.placeholder = '';
+        });
+
+        myLocationInput.addEventListener('blur', () =>{
+            myLocationInput.placeholder = '현재 나의 위치 입력';
+        });
+
+        formElement.addEventListener('submit', (event)=>{
+            event.preventDefault();
+            const myLocation = myLocationInput.value;
+            console.log(`입력받은 나의 위치 : ${myLocation}`);
+        });
+    </script>
+</body>
+</html>

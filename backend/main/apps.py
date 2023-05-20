@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SinglePagesConfig(AppConfig):
+class MainConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'single_pages'
+    name = 'main'
