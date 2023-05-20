@@ -1,4 +1,4 @@
-API_KEY = ''; // 발급 받은 API KEY 삽입 
+API_KEY = '904f2fe1a5a35a647ceda442a230b413'; // 발급 받은 API KEY 삽입 
 
 const iconClasses = {
    '01d': 'fas fa-sun',       // 맑은 날씨 (주간)

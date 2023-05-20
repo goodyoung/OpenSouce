@@ -60,6 +60,32 @@ body{
     background-color:transparent;
 }
 
+.login-button {
+    float:right;
+    background-color: #4CAF50; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    text-align: center; 
+    text-decoration: none; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    transition-duration: 0.4s; 
+  }
+
+  /* 버튼 호버 효과 */
+  .login-button:hover {
+    background-color: #45a049; 
+  }
+
+  /* 버튼 액티브 효과 */
+  .login-button:active {
+    background-color: #3e8e41; 
+    box-shadow: 0 5px #666; 
+    transform: translateY(15px); 
+  }
 
 
 /* map.html 부분 CSS */
@@ -67,15 +93,15 @@ body{
     overflow: hidden;
 }
 
-.map_clock{
-    float: right;
+.weather_div{
+    float: left;
 }
 
 
 #map{
     border: 5px solid rgb(111, 223, 152);
-    width:500px;
-    height:400px;
+    width:60%;
+    height:60%;
 }
 
 .main_div2{

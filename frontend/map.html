@@ -2,12 +2,12 @@
 <html lang="kr">
     <head>
         <meta charset="utf-8">
-        <title>★따릉이★</title>
+        <title>★따릉이★지도 페이지</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
-    <!-- 지도를 표시할 div 입니다 -->
+    <button class="login-button">로그인</button>
     <h2 id="clock" class="map_clock">00:00:00</h2>
     <div class="weather_div">
         <div id="weather-icon"></div>
@@ -21,10 +21,17 @@
         <img src="./image/logo.png" style="width:300px;">
         <h1>따릉이와 나의 거리 조회 서비스</h1>
         <h5>입력 받은 현재 위치 : 광화문</h5>
+        <!-- 지도를 표시할 div 입니다 -->
         <div id="map"></div>
+        <p>
+            <input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()" /> 지적편집도 정보 보기
+            <input type="checkbox" id="chkTerrain" onclick="setOverlayMapTypeId()" /> 지형정보 보기 
+            <input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()" /> 교통정보 보기       
+            <input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> 자전거도로 정보 보기
+        </p>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- appkey의 값으로 발급받은 API KEY 삽입 -->
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services,clusterer"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=54a44199cedecc8247f60cd723b9b214&libraries=services,clusterer"></script>
         <script src="./js/map.js"></script>
     </div>
     <script src="./js/clock.js"></script>
