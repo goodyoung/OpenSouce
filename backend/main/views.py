@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 def index(request):
+    print(123)
     return render(
         request,
         'main/search.html',
