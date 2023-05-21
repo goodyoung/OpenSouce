@@ -1,4 +1,4 @@
-API_KEY = ''; // 발급 받은 API KEY 삽입 
+API_KEY = '1b73cef3ca9beda7284bd226b969e711'; // 발급 받은 API KEY 삽입 
 
 const iconClasses = {
    '01d': 'fas fa-sun',       // 맑은 날씨 (주간)
@@ -20,11 +20,14 @@ const iconClasses = {
    '50d': 'fas fa-smog',      // 안개 (주간)
    '50n': 'fas fa-smog'       // 안개 (야간)
 };
-  
+const watchID = navigator.geolocation.watchPosition((position) => {
+   doSomething(position.coords.latitude, position.coords.longitude);
+ });
 
 function onGeoOk(position){
    const lat=position.coords.latitude;
    const lon=position.coords.longitude;
+   console.log(lat,lon)
    const url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`;
    fetch(url)
        .then(res=>res
