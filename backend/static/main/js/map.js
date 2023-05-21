@@ -113,7 +113,7 @@ var clusterer = new kakao.maps.MarkerClusterer({
 console.log(`4`);
 
 
-$.get(".open/data/json_data.json", function(data) {
+$.get("{% static 'main/data/json_data.json' %}", function(data) {
     var stationLatitude = data.stationLatitude;
     var stationLongitude = data.stationLongitude;
 	var imageSrc = './image/bicycle_station.png', // 마커이미지의 주소입니다    

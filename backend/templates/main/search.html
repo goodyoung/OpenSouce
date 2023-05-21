@@ -15,7 +15,8 @@
         <img src="{% static 'main/image/logo.png' %}" style="width:300px;">
         <h1>따릉이와 나의 거리 조회 서비스</h1>
         <div class="search_div">
-            <form id="search_bar">
+            <form id="search_bar" action="/main/" method = "POST">
+                {% csrf_token %}
                 <input type="text" placeholder="현재 나의 위치 입력" name="location" id="location_input" required>
                 <button class="search_button" type="submit" >
                     <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
@@ -52,6 +53,7 @@
             event.preventDefault();
             const myLocation = myLocationInput.value;
             console.log(`입력받은 나의 위치 : ${myLocation}`);
+            formElement.submit()
         });
     </script>
 </body>
