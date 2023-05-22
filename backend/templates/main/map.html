@@ -22,6 +22,7 @@
         <img src="{% static 'main/image/logo.png' %}" style="width:300px;">
         <h1>따릉이와 나의 거리 조회 서비스</h1>
         <h5>입력 받은 현재 위치 : 광화문</h5>
+        {{bike}}
         <!-- 지도를 표시할 div 입니다 -->
         <div id="map"></div>
         <p>
@@ -32,10 +33,60 @@
         </p>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- appkey의 값으로 발급받은 API KEY 삽입 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=54a44199cedecc8247f60cd723b9b214&libraries=services,clusterer"></script>
+        <script src="{% static 'data/json_data_2.json' %}" type="text/javascript"></script>
         <script src="{% static 'main/js/map.js' %}"></script>
     </div>
+
     <script src="{% static 'main/js/clock.js' %}"></script>
     <script src="{% static 'main/js/weather.js' %}"></script>
+    <script>
+        let post = JSON.stringify('{{ bike }}')
+        post = post.replace(/"/g,'')
+        post = post.replace(/&quot;/g,'\"')
+        data = JSON.parse(post)
+        
+        var i =0
+        $.get("bike_coordinate/", function(data) {
+              var imageSrc = "{% static 'main/image/bicycle_station.png' %}", // 마커이미지의 주소입니다    
+              imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+              imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+          
+              var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+              // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+              // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+              var markers = $(data.totalbike).map(function(i, position) {
+                  var position = new kakao.maps.LatLng(position.stationLatitude, position.stationLongitude);
+                  var infowindow = new kakao.maps.InfoWindow({
+                    content: data.totalbike[i].stationName,
+                    removable: true
+                  })
+                  i++;
+                  var marks = new kakao.maps.Marker({ position: position, image: markerImage });
+                  kakao.maps.event.addListener(marks,'click', makeOverListener(map, marks, infowindow));
+                  return marks;
+              });
+              // 클러스터러에 마커들을 추가합니다
+              clusterer.addMarkers(markers);
+              function makeOverListener(map, marker, infowindow) {
+                infowindow.close();
+                return function () {
+                    infowindow.open(map, marker);
+                };
+              }
+              // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+              function makeOutListener(infowindow) {
+                 return function () {
+                     infowindow.close();
+                 };
+             }
+          });
+          
+          
+          
+
+    </script>
+
     </body>
 </html>

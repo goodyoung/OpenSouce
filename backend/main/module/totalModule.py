@@ -36,8 +36,11 @@ class ChangeAddress:
     def changeAddress(self, address):
         url = f'https://dapi.kakao.com/v2/local/search/address.json?query={address}'
         headers = {"Authorization": "KakaoAK ddade78155e5ff37aab8ddc00f07c0df"} #kakao rest api key 암호화 작업 필요함.
-        address_json = requests.get(url, headers=headers).json()['documents'][0]
-        return address_json['x'],address_json['y']
+        try:
+            address_json = requests.get(url, headers=headers).json()['documents'][0]
+            return address_json['x'],address_json['y']
+        except:
+            return False
     
 ## 문화재, 공원, 거리 등
 class Distance:
@@ -59,7 +62,7 @@ class Distance:
         return location_json   
     
     def total(self):
-        for name in ['공원','문화공간','문화재']:  #더 추가할 수 있겠지?
-            filename = f'./datasets/서울 {name}.csv'
+        for name in ['park','culture','heritage']:  #더 추가할 수 있겠지?
+            filename = f'./datasets/Seoul {name}.csv'
             df = pd.read_csv(filename)
             self.dic[name] = self.location_data(df,self.my_location)
