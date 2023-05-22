@@ -124,8 +124,11 @@ $.get("./json_data_2.json", function(data) {
     // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
     var markers = $(data.totalbike).map(function(i, position) {
         var position = new kakao.maps.LatLng(position.stationLatitude, position.stationLongitude);
+        
+        var iwContent = '<div class=\'info_window\'>'+data.totalbike[i].stationName+'<br>'+'남은 자전거 개수 : ○개'+'</div>'
+
         var infowindow = new kakao.maps.InfoWindow({
-          content: data.totalbike[i].stationName,
+          content: iwContent,
           removable: true
         })
         i++;
@@ -158,3 +161,28 @@ $.get("./json_data_2.json", function(data) {
 });
 
 
+// 모달 열기 버튼
+var modalButton = document.getElementById("modal-button");
+
+// 모달 엘리먼트
+var modal = document.getElementById("modal");
+
+// 닫기 버튼
+var closeBtn = document.getElementsByClassName("close")[0];
+
+// 모달 열기 버튼 클릭
+modalButton.onclick = function() {
+  modal.style.display = "block";
+}
+
+// 닫기 버튼 클릭
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+}
+
+// 모달 외부 클릭
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

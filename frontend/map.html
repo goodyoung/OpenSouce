@@ -17,10 +17,21 @@
             <span></span>
         </div>
     </div>
+
     <div class="main_div2">
         <img src="./image/logo.png" style="width:300px;">
         <h1>따릉이와 나의 거리 조회 서비스</h1>
-        <h5>입력 받은 위치 : 광화문</h5>
+        <!-- <h5>입력 받은 위치 : 광화문</h5> -->
+        <button id="modal-button" class="modal-button">가까운 따릉이</button>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>내 주변 따릉이는?</h3>
+                <p>경복궁 4번 출구 : ○○ m 광화문 시민열린마당 : ○○ m 종로 문화원 건너편 : ○○ m</p>
+                <h3>내 주변 가볼 만한 곳</h3>
+                <p>경복궁 4번 출구 : ○○ m 광화문 시민열린마당 : ○○ m 종로 문화원 건너편 : ○○ m</p>
+            </div>
+        </div>
         <!-- 지도를 표시할 div 입니다 -->
         <div id="map"></div>
         <p>
