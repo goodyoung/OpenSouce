@@ -114,3 +114,28 @@ var clusterer = new kakao.maps.MarkerClusterer({
 });
 console.log(`4`);
 
+// 모달 열기 버튼
+var modalButton = document.getElementById("modal-button");
+
+// 모달 엘리먼트
+var modal = document.getElementById("modal");
+
+// 닫기 버튼
+var closeBtn = document.getElementsByClassName("close")[0];
+
+// 모달 열기 버튼 클릭
+modalButton.onclick = function() {
+  modal.style.display = "block";
+}
+
+// 닫기 버튼 클릭
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+}
+
+// 모달 외부 클릭
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
