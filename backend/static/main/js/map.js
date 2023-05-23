@@ -1,6 +1,6 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(37.576022, 126.9769), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(my_location[1],my_location[2]), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
 
@@ -81,10 +81,10 @@ function getAddressCoordinates(address) {
   async function searchAddress() {
 	try {
 	  console.log(`3`);
-	  const address = '서울 종로구 사직로 161';
+	  const address = my_location[0];
 	  const coords = await getAddressCoordinates(address);
-    // console.log(`100`,coords);
-  
+    console.log(`100`,address,coords);
+    
 	  // 결과값으로 받은 위치를 마커로 표시합니다
 	  var marker = new kakao.maps.Marker({
 		map: map,
@@ -139,3 +139,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+
+

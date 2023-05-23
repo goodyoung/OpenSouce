@@ -21,7 +21,6 @@
     <div class="main_div2">
         <img src="{% static 'main/image/logo.png' %}" style="width:300px;">
         <h1>따릉이와 나의 거리 조회 서비스</h1>
-        {{bike}}
         <!-- 지도를 표시할 div 입니다 -->
         <!-- <h5>입력 받은 위치 : 광화문</h5> -->
         <button id="modal-button" class="modal-button">가까운 따릉이</button>
@@ -46,17 +45,32 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=54a44199cedecc8247f60cd723b9b214&libraries=services,clusterer"></script>
         <script src="{% static 'data/json_data_2.json' %}" type="text/javascript"></script>
-        <script src="{% static 'main/js/map.js' %}"></script>
     </div>
 
     <script src="{% static 'main/js/clock.js' %}"></script>
     <script src="{% static 'main/js/weather.js' %}"></script>
     <script>
-        let post = JSON.stringify('{{ bike }}')
-        post = post.replace(/"/g,'')
-        post = post.replace(/&quot;/g,'\"')
-        data = JSON.parse(post)
-        
+        function preproseccing(post){
+            post = post.replace(/&quot;/g,'\"')
+            .replace(/&#x27;/g, "")
+            data = JSON.parse(post)
+            return data
+        }
+
+        let ty = ['{{ park }}','{{ heritage }}','{{ culture }}','{{ park }}']
+        let result_around = []
+
+        ty.forEach(i => {
+            data = preproseccing(i)
+            result_around.push(data)
+        })
+
+
+        let my_location = preproseccing('{{ address }}')
+        console.log(my_location)
+
+
+
         var i =0
         $.get("bike_coordinate/", function(data) {
               var imageSrc = "{% static 'main/image/bicycle_station.png' %}", // 마커이미지의 주소입니다    
@@ -97,6 +111,7 @@
           
 
     </script>
+    <script src="{% static 'main/js/map.js' %}"></script>
 
     </body>
 </html>

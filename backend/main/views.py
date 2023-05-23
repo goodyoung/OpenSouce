@@ -40,30 +40,33 @@ class MapView(View):
     #     print(context)
     #     return render(request, self.template_name)
     def post(self,request):
-        
-        address = '서울 중구 회현동1가'
+        ret  = {}
+        address = str(request.POST['location'])
         reu = ChangeAddress(address)
+        
         # if reu == False: #False일 때 하는 alter처리하는 로직을 짜자...... ㅎㅎ
         lat = float(reu.result[1])
         long = float(reu.result[0])
+        my_location_data = [str(address),lat,long]    
+        ret['address'] = json.dumps(my_location_data,ensure_ascii=False)
+
         print(f'사용자 input은 {address}이고 위 경도는 {(lat,long)}입니다.') 
         #따릉이 및 다른 건물들 거리 게산
         a,b = bike_distance(lat,long), Distance(lat,long)
         bike = a.result
         building = b.dic
-        
         building['bike'] = bike
         context = building
-        ret  = {}
-
+        
         for name in ["bike","culture","heritage","park"]:
+            temp = []
             for i in context[name]:
                 # for key,value in i.items():
                 #     i[key] = str(value)
                 i = dict(i.items())
-                ret[name] = (json.dumps(i,ensure_ascii=False))
-        print('ret')
-
+                dum = json.dumps(i,ensure_ascii=False)
+                temp.append(dum)
+            ret[name] = temp
         return  render(request, self.template_name, context = ret) #redirect('main:map', context)
     
     
