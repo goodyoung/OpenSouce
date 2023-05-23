@@ -57,7 +57,7 @@
             return data
         }
 
-        let ty = ['{{ park }}','{{ heritage }}','{{ culture }}','{{ park }}']
+        let ty = ['{{ bike }}','{{ heritage }}','{{ culture }}','{{ park }}']
         let result_around = []
 
         ty.forEach(i => {
@@ -81,16 +81,24 @@
               // 데이터에서 좌표 값을 가지고 마커를 표시합니다
               // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
               var markers = $(data.totalbike).map(function(i, position) {
-                  var position = new kakao.maps.LatLng(position.stationLatitude, position.stationLongitude);
-                  var infowindow = new kakao.maps.InfoWindow({
-                    content: data.totalbike[i].stationName,
-                    removable: true
-                  })
-                  i++;
-                  var marks = new kakao.maps.Marker({ position: position, image: markerImage });
-                  kakao.maps.event.addListener(marks,'click', makeOverListener(map, marks, infowindow));
-                  return marks;
-              });
+                var position = new kakao.maps.LatLng(position.stationLatitude, position.stationLongitude);
+                
+                var iwContent = '<div class=\'info_window\'>'+data.totalbike[i].stationName+'<br>'+'남은 자전거 개수 : ○개'+'</div>'
+        
+                var infowindow = new kakao.maps.InfoWindow({
+                  content: iwContent,
+                  removable: true
+                })
+                i++;
+        
+        
+                
+                var marks = new kakao.maps.Marker({ position: position, image: markerImage });
+                
+                kakao.maps.event.addListener(marks,'click', makeOverListener(map, marks, infowindow));
+        
+                return marks;
+            });
               // 클러스터러에 마커들을 추가합니다
               clusterer.addMarkers(markers);
               function makeOverListener(map, marker, infowindow) {

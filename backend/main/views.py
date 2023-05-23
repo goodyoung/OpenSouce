@@ -39,6 +39,7 @@ class MapView(View):
     #     print('연결 성공 ㅎㅎ')
     #     print(context)
     #     return render(request, self.template_name)
+
     def post(self,request):
         ret  = {}
         address = str(request.POST['location'])
@@ -56,6 +57,7 @@ class MapView(View):
         bike = a.result
         building = b.dic
         building['bike'] = bike
+        
         context = building
         
         for name in ["bike","culture","heritage","park"]:

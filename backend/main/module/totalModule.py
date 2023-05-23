@@ -3,18 +3,22 @@ import requests
 from haversine import haversine
 import json
 import os
+import re
 # print(os.getcwd())
 os.chdir("./main/module") ##경로 설정
 
 ## 따릉이 거리 계산
 class bike_distance:
     def __init__(self,lat,long):
-        
         print(os.getcwd())
         self.df = pd.read_csv('./datasets/data1.csv')
         self.my_location = (lat,long)
         self.result = self.location_data(self.df,self.my_location)
-        
+    def te(self, text):
+        pattern = r"\d+\."
+        result = re.sub(pattern, "", text)
+        result = result.strip()
+        return result
     def distance_calc(self, df, my_location):
         bike_location = (df['stationLatitude'], df['stationLongitude'])
         distance = haversine(my_location, bike_location, unit = 'm')
@@ -23,6 +27,7 @@ class bike_distance:
     def location_data(self, df,location):
         df[['stationLatitude','stationLongitude']] = df[['stationLatitude','stationLongitude']].astype(float)
         df['distance'] = df[['stationLatitude','stationLongitude']].apply(self.distance_calc, axis =1, my_location = self.my_location)
+        df['stationName'] = df['stationName'].apply(self.te)
         distance_index = list(df['distance'].sort_values().index)[:5]
         location_json = json.loads(df.loc[distance_index].to_json(orient = 'records',force_ascii=False))
         return location_json
