@@ -26,7 +26,7 @@ def bike_coordinate(request):
         # return JsonResponse(building)
 # /Users/goodyoung/Desktop/GIt/OpenSouce/backend/static/main/data/json_data_2.json
 class SearchView(View):
-    template_name ='main/search.html'
+    template_name = 'main/search.html'
     def get(self, request):        
         return render(request, self.template_name)
         

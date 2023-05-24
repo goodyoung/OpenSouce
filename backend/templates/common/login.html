@@ -1,20 +1,25 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container my-3">
-    <form method="post" action="{% url 'common:login' %}">
-        {% csrf_token %}
-        {% include "form_errors.html" %}
-        <div class="mb-3">
-            <label for="username">사용자ID</label>
-            <input type="text" class="form-control" name="username" id="username"
-                   value="{{ form.username.value|default_if_none:'' }}">
-        </div>
-        <div class="mb-3">
-            <label for="password">비밀번호</label>
-            <input type="password" class="form-control" name="password" id="password"
-                   value="{{ form.password.value|default_if_none:'' }}">
-        </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
-    </form>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'common/css/style2.css' %}">
+    <title>로그인 페이지</title>
+</head>
+<body>
+    <div class="main_form">
+        <img src="{% static 'main/image/logo.png' %}" style="width:300px;">
+        <form action="/common" method="post">
+            <p><input class="login" type="text" name="id" placeholder="아이디" required></p>
+            <p><input class="login" type="password" name="pwd" placeholder="비밀번호" required></p>
+            <p><input class="btn" type="submit" value="로그인"></p>
+        </form>
+
+        <p>아직 계정이 없으신가요? <a href="/register">회원가입</a></p>
+    </div>
+
+
+</body>
+</html>
