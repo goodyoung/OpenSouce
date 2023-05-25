@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # allauth에서 필요한 앱
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'main',
     'common',
 ]
@@ -128,7 +132,14 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 로그인 성공후 이동하는 URL
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/main/' #잠시 바꿈
 
 # 로그아웃시 이동하는 URL
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/main/' #잠시 바꿈
+
+AUTHENTICATION_BACKENDS=(
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
