@@ -70,35 +70,46 @@
         console.log(my_location)
 
 
-
         var i =0
         $.get("bike_coordinate/", function(data) {
-              var imageSrc = "{% static 'main/image/bicycle_station.png' %}", // 마커이미지의 주소입니다    
+              var imageSrc = "{% static 'main/image/bicycle_station.png' %}", // 전체 따릉이 위치 마커 이미지입니다.
               imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
               imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-          
+
+              var imageSrc2 = "{% static 'main/image/bicycle_station_around.png' %}", // 근처 따릉이 위치 마커 이미지입니다.
+              imageSize2 = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+              imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+              console.log(result_around[0]); // 근처 따릉이 정보
+
               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+              var markerImage2 = new kakao.maps.MarkerImage(imageSrc2, imageSize2, imageOption2)
               // 데이터에서 좌표 값을 가지고 마커를 표시합니다
               // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
               var markers = $(data.totalbike).map(function(i, position) {
                 var position = new kakao.maps.LatLng(position.stationLatitude, position.stationLongitude);
                 
-                var iwContent = '<div class=\'info_window\'>'+data.totalbike[i].stationName+'<br>'+'남은 자전거 개수 : ○개'+'</div>'
-        
+                var iwContent = '<div class=\'info_window\'>'+data.totalbike[i].stationName+'</div>'
+
                 var infowindow = new kakao.maps.InfoWindow({
                   content: iwContent,
                   removable: true
                 })
+                if ((data.totalbike[i].stationLongitude == result_around[0][0].stationLongitude)
+                || (data.totalbike[i].stationLongitude == result_around[0][1].stationLongitude) 
+                || (data.totalbike[i].stationLongitude == result_around[0][2].stationLongitude)
+                || (data.totalbike[i].stationLongitude == result_around[0][3].stationLongitude)
+                || (data.totalbike[i].stationLongitude == result_around[0][4].stationLongitude)){
+                    var marks = new kakao.maps.Marker({ position: position, image: markerImage2 });
+                    kakao.maps.event.addListener(marks,'click', makeOverListener(map, marks, infowindow));
+                }else{
+                    var marks = new kakao.maps.Marker({ position: position, image: markerImage });
+                    kakao.maps.event.addListener(marks,'click', makeOverListener(map, marks, infowindow));
+                }
                 i++;
-        
-        
-                
-                var marks = new kakao.maps.Marker({ position: position, image: markerImage });
-                
-                kakao.maps.event.addListener(marks,'click', makeOverListener(map, marks, infowindow));
-        
                 return marks;
             });
+
               // 클러스터러에 마커들을 추가합니다
               clusterer.addMarkers(markers);
               function makeOverListener(map, marker, infowindow) {
@@ -114,10 +125,7 @@
                  };
              }
           });
-          
-          
-          
-
+                  
     </script>
     <script src="{% static 'main/js/map.js' %}"></script>
 
