@@ -106,7 +106,6 @@ function getAddressCoordinates(address) {
   
   searchAddress();
   
-
 var clusterer = new kakao.maps.MarkerClusterer({
 	map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
 	averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
@@ -139,6 +138,21 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+var circle = new kakao.maps.Circle({
+  center : new kakao.maps.LatLng(my_location[1], my_location[2]),  // 원의 중심좌표 입니다 
+  radius: result_around[0][4].distance, // 미터 단위의 원의 반지름입니다 
+  strokeWeight: 5, // 선의 두께입니다 
+  strokeColor: '#75B8FA', // 선의 색깔입니다
+  strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+  strokeStyle: 'dashed', // 선의 스타일 입니다
+  fillColor: '#CFE7FF', // 채우기 색깔입니다
+  fillOpacity: 0.7  // 채우기 불투명도 입니다   
+}); 
+
+// 지도에 원을 표시합니다 
+circle.setMap(map); 
+
 
 
 
