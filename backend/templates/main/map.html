@@ -8,7 +8,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
-    <button class="login-button">로그인</button>
+        {% if user.is_authenticated %}
+        <a class="nav-link" href="{% url 'common:logout' %}"><button class="login-button">{{ user.username }} (로그아웃)</button></a>
+        {% else %}
+        <a href="{% url 'common:login' %}"><button class="login-button">로그인</button></a>
+        {% endif %}
     <h2 id="clock" class="map_clock">00:00:00</h2>
     <div class="weather_div">
         <div id="weather-icon"></div>
@@ -19,7 +23,9 @@
         </div>
     </div>
     <div class="main_div2">
+        <a href="{% url 'main:search' %}">
         <img src="{% static 'main/image/logo.png' %}" style="width:300px;">
+        </a>
         <h1>따릉이와 나의 거리 조회 서비스</h1>
         <!-- 지도를 표시할 div 입니다 -->
         <!-- <h5>입력 받은 위치 : 광화문</h5> -->

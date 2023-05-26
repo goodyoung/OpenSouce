@@ -1,8 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Post(models.Model):
-    title = models.CharField(max_length=30)
-    content = models.TextField()
-    
-    created_at = models.DateTimeField()
 # Create your models here.
+class History(models.Model):
+    user = models.ForeignKey(User, on_delete= models.CASCADE)
+    search_history = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add= True)
