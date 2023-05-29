@@ -13,12 +13,19 @@
 
         <h1>{{user.username}}님의 검색 기록</h1>
         <div class="history_data">
-            {% for question in object_list  %}
-                <a href="/">{{ question.user }} |
-                {{ question.search_history }} |
-                {{ question.created_at }} </a>
-                <br>
+            <table>
+                <tr>
+                  <th>검색 주소</th>
+                  <th>날짜</th>
+                </tr>
+                {% for question in object_list %}
+                  <tr class="td">
+                    <td>{{ question.search_history }}</td>
+                    <td>{{ question.created_at }}</td>
+                  </tr>
                 {% endfor %}
+              </table>
+              
         </div>
     </div>
 </body>

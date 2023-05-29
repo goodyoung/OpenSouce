@@ -11,8 +11,7 @@ body {
 .main_form {
     background-color: white;
     height: auto;
-    width: 90%;
-    max-width: 450px;
+    width: 700px;
     padding: 10px;
     margin: 0 auto;
     border-radius: 5px;
@@ -57,10 +56,16 @@ body {
 }
 
 .history_data{
+    display:flex;
+    justify-content: center;
     overflow-y: scroll;
     max-height: 150px;
     scrollbar-width: thin;
     scrollbar-color: rgb(111, 223, 152) #f1f1f1;
+}
+
+.history_data table tr th{
+    border-bottom: 1px solid #ccc;
 }
 
 .history_data::-webkit-scrollbar {
@@ -76,14 +81,8 @@ body {
     border-radius: 4px; /* 스크롤바 모서리의 둥글기 */
 }
 
-.history_data a{
-    text-decoration-line: none;
-    color: green;
-    /* overflow:scroll; */
-}
 
-.history_data a:hover{
-    color: red;
-    /* overflow:scroll; */
+.td:hover{
+    color:green;
 }
 
