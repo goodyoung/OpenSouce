@@ -60,6 +60,7 @@ body{
     background-color:transparent;
 }
 
+.history-button,
 .login-button {
     float:right;
     background-color: #4CAF50; 
@@ -76,11 +77,13 @@ body{
   }
 
   /* 버튼 호버 효과 */
+  .history-button:hover,
   .login-button:hover {
     background-color: #45a049; 
   }
 
   /* 버튼 액티브 효과 */
+  .history-button:active,
   .login-button:active {
     background-color: #3e8e41; 
     box-shadow: 0 5px #666; 

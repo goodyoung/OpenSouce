@@ -154,5 +154,16 @@ var circle = new kakao.maps.Circle({
 circle.setMap(map); 
 
 
+console.log('근처 문화유산지', result_around[1]);
+console.log('근처 여가공간', result_around[2]);
+console.log('근처 공원', result_around[3]);
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(result_around[1][0].latitude, result_around[1][0].longtitude); 
 
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
 
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);

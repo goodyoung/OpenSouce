@@ -1,192 +1,194 @@
 *{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body{
-    position:absolute;
-    width:100%;
-    height:100%;
-    margin:0;
-    padding:0;
+  position:absolute;
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
 }
 
 #search_bar input{
-    color:rgb(61, 85, 103);
-    text-align: center;
-    width: 450px;
-    height: 32px;
-    font-size: 15px;
-    border: 0;
-    border-radius: 15px;
-    outline: none;
-    padding-left: 10px;
-    background-color: rgb(233, 233, 233);
-    
+  color:rgb(61, 85, 103);
+  text-align: center;
+  width: 450px;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+  
 }
 
 
 #search_bar img{
-    width: 17px;
-    top: 10px;
-    right: 12px;
-    margin: 0;
+  width: 17px;
+  top: 10px;
+  right: 12px;
+  margin: 0;
 }
 #weather{
-    display: inline-block;
+  display: inline-block;
 }
 
 
 .bg_seoul{
-    width:500px;
+  width:500px;
 }
 
 .main_div{
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .search_div{
-    margin: 0 auto;
-    position: relative;
+  margin: 0 auto;
+  position: relative;
 }
 
 .search_button{
-    border:0;
-    background-color:transparent;
+  border:0;
+  background-color:transparent;
 }
 
+.history-button,
 .login-button {
-    float:right;
-    background-color: #4CAF50; 
-    color: white; 
-    border: none; 
-    padding: 10px 20px; 
-    text-align: center; 
-    text-decoration: none; 
-    font-size: 16px; 
-    margin: 4px 2px; 
-    cursor: pointer; 
-    border-radius: 8px; 
-    transition-duration: 0.4s; 
-  }
+  float:right;
+  background-color: #4CAF50; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  text-align: center; 
+  text-decoration: none; 
+  font-size: 16px; 
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 8px; 
+  transition-duration: 0.4s; 
+}
 
-  /* 버튼 호버 효과 */
-  .login-button:hover {
-    background-color: #45a049; 
-  }
+/* 버튼 호버 효과 */
+.history-button:hover,
+.login-button:hover {
+  background-color: #45a049; 
+}
 
-  /* 버튼 액티브 효과 */
-  .login-button:active {
-    background-color: #3e8e41; 
-    box-shadow: 0 5px #666; 
-    transform: translateY(15px); 
-  }
+/* 버튼 액티브 효과 */
+.history-button:active,
+.login-button:active {
+  background-color: #3e8e41; 
+  box-shadow: 0 5px #666; 
+  transform: translateY(15px); 
+}
 
 
 /* map.html 부분 CSS */
 body{
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .weather_div{
-    float: left;
+  float: left;
 }
 
 
 #map{
-    border: 5px solid rgb(111, 223, 152);
-    width:60%;
-    height:60%;
+  border: 5px solid rgb(111, 223, 152);
+  width:60%;
+  height:60%;
+}
+
+.info_window {
+  font-size:smaller;
+  background: rgb(111, 223, 152);
+  border-radius: 4px;
 }
 
 .main_div2{
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 
 /* 모달 스타일 */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
-  .modal-content {
-    position: fixed;
-    color: white;
-    text-align: center;
-    background-color: #4CAF50;
-    margin: 10% auto;
-    padding: 10px;
-    border: 1px solid #888;
-    width: 60%;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  /* 닫기 버튼 스타일 */
-  .close {
-    color: #888;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  /* 모달 열기 버튼 스타일 */
-  .modal-button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 8px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
-  
-  .modal-button:hover {
-    background-color: #45a049; 
-  }
 
-  .modal-button:active {
-    background-color: #3e8e41; 
-    box-shadow: 0 5px #666; 
-    transform: translateY(5px); 
-  }
+.modal-content {
+  position: fixed;
+  color: white;
+  text-align: center;
+  background-color: #4CAF50;
+  margin: 10% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 60%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-  .info_window{
-    color: green;
-    
-  }
+/* 닫기 버튼 스타일 */
+.close {
+  color: #888;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 모달 열기 버튼 스타일 */
+.modal-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.modal-button:hover {
+  background-color: #45a049; 
+}
+
+.modal-button:active {
+  background-color: #3e8e41; 
+  box-shadow: 0 5px #666; 
+  transform: translateY(5px); 
+}
