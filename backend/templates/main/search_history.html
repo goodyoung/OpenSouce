@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,15 +10,15 @@
 </head>
 <body>
     <div class="main_form">
-        <h1>◎◎◎◎님의 검색 기록</h1>
+
+        <h1>{{user.username}}님의 검색 기록</h1>
         <div class="history_data">
-            <h><a href="/">검색기록 1</h><br>
-            <h><a href="/">검색기록 2</h><br>
-            <h><a href="/">검색기록 3</h><br>
-            <h><a href="/">검색기록 4</h><br>
-            <h><a href="/">검색기록 5</h><br>
-            <h><a href="/">검색기록 6</h><br>
-            <h><a href="/">검색기록 7</h><br>
+            {% for question in object_list  %}
+                <a href="/">{{ question.user }} |
+                {{ question.search_history }} |
+                {{ question.created_at }} </a>
+                <br>
+                {% endfor %}
         </div>
     </div>
 </body>

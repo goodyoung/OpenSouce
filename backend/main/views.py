@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import ListView
 from .module.totalModule import bike_distance, ChangeAddress, Distance
 from django.http import JsonResponse
 import json
-import os
-from pathlib import Path
 from django.contrib.auth.models import User
 from .models import History
+from django.contrib import messages
+
 #api
 def bike_coordinate(request):
         with open('datasets/json_data_2.json', 'r') as f:
@@ -38,6 +39,8 @@ class MapView(View):
     #     return render(request, self.template_name)
 
     def post(self,request):
+        print('asdasfasaadgsgsgsd')
+        print(request.POST)
         # 유저 로그인 상태일 때 True
         bo = request.user.is_authenticated
         # 사용자 검색 기록 저장
@@ -49,10 +52,17 @@ class MapView(View):
             pass
         ret  = {}
         address = str(request.POST['location'])
+        
         reu = ChangeAddress(address)
-        # if reu == False: #False일 때 하는 alter처리하는 로직을 짜자...... ㅎㅎ
-        lat = float(reu.result[1])
-        long = float(reu.result[0])
+        
+        # 주소가 정확하지 않을 때
+        try:
+            lat = float(reu.result[1])
+            long = float(reu.result[0])
+        except:
+            messages.warning(request, "주소가 정확하지 않습니다. 다시 입력해주세요.")
+            return redirect('main:search')
+        
         my_location_data = [str(address),lat,long]    
         ret['address'] = json.dumps(my_location_data,ensure_ascii=False)
         #따릉이 및 다른 건물들 거리 게산
@@ -73,7 +83,12 @@ class MapView(View):
             
         return  render(request, self.template_name, context = ret) 
     
-    
+class Mypage(ListView):
+    template_name ='main/search_history.html' # 디폴트 템플릿명: <app_label>/<model_name>_list.html
+    context_object_name = 'object_list' # 디폴트 컨텍스트 변수명 :  object_list
+    def get_queryset(self): # 컨텍스트 오버라이딩
+        print(History.objects.order_by('created_at'))
+        return History.objects.order_by('created_at')
 
 
 

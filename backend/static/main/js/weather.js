@@ -30,7 +30,8 @@ function onGeoOk(position){
        .then(res=>res
        .json().then(data=>{
            const weather=document.querySelector("#weather span:first-child");
-           const city=document.querySelector("#weather span:last-child");
+           const city=document.querySelector("#weather span:nth-child(3)");
+           const myloc = document.querySelector("#test");
 
            const iconClass = iconClasses[data.weather[0].icon];
            const weatherIcon = document.getElementById('weather-icon');
@@ -38,6 +39,10 @@ function onGeoOk(position){
 
            weather.innerText=`${data.weather[0].main} ${data. main.temp}°`;
            city.innerText="@"+data.name;
+           myloc.value = `${lat,lon}`
+           myloc.name= `${lat,lon}`
+           myloc.innerText = `${lat,lon}`
+
    }))
 }
 function onGeoError(){
