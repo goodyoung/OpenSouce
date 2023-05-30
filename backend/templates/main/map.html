@@ -139,8 +139,46 @@
                      infowindow.close();
                  };
              }
+
+
+             function ObjectCor(num){
+                var positions=[]
+                if (num===1){title = 'ccbaMnm1'
+            }
+                else{title = 'name'
+            }
+
+
+                for (let i = 0 ; i<5 ;i++ ){
+                  var positionsdata = new Object();
+                  corTemp = result_around[num][i]
+                  positionsdata.title = corTemp[title];
+                  positionsdata.latlng = new kakao.maps.LatLng(corTemp.latitude,corTemp.longtitude)
+                  positions.push(positionsdata)
+                }
+                return positions
+              }
+              
+            let aroundSet = {1:"{% static 'main/image/culture_around.png' %}",
+            2:"{% static 'main/image/playground_around.png' %}",
+            3:"{% static 'main/image/park_around.png' %}"}
+                    
+              for (var key in aroundSet){
+                var imageSrc =aroundSet[key]
+                var positions = ObjectCor(key)
+                for (var i = 0; i < positions.length; i ++) {
+                var imageSize = new kakao.maps.Size(24, 35); 
+                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+                marker = new kakao.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: positions[i].latlng, // 마커를 표시할 위치
+                    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    image : markerImage // 마커 이미지 
+                });
+                marker.setMap(map);
+              }
+              }
           });
-                  
     </script>
     <script src="{% static 'main/js/map.js' %}"></script>
 
