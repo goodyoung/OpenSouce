@@ -39,26 +39,38 @@ class MapView(View):
     #     return render(request, self.template_name)
 
     def post(self,request):
-        print('asdasfasaadgsgsgsd')
-        print(request.POST)
         # 유저 로그인 상태일 때 True
         bo = request.user.is_authenticated
         # 사용자 검색 기록 저장
+        try:
+            address = str(request.POST['location'])
+            reu = ChangeAddress(address)
+        except:
+            loc_list = request.POST['location2'].split()
+            print('loc_list',loc_list)
+            bo = False
+
+
         if bo:
+            print('여기는 오면 안된다.')
             db_user = User.objects.get(username = request.user.username) # filter | get 방식
             h = History(user=db_user, search_history=request.POST['location'])
             h.save()
         else:
+            print('여기는 와줘라')
             pass
         ret  = {}
-        address = str(request.POST['location'])
-        
-        reu = ChangeAddress(address)
+        # loc_list = request.POST['location'].split()
+
+        # address = str(request.POST['location'])
+        # reu = ChangeAddress(address)
         
         # 주소가 정확하지 않을 때
         try:
+            print(reu['result'])
             lat = float(reu.result[1])
             long = float(reu.result[0])
+            print(lat,long)
         except:
             messages.warning(request, "주소가 정확하지 않습니다. 다시 입력해주세요.")
             return redirect('main:search')

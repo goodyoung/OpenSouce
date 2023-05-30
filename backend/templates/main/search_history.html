@@ -9,8 +9,8 @@
     <title>검색 기록</title>
 </head>
 <body>
+    <a href="{% url 'main:search' %}"><button class="login-button">돌아가기</button></a>
     <div class="main_form">
-
         <h1>{{user.username}}님의 검색 기록</h1>
         <div class="history_data">
             <table>
