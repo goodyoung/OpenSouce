@@ -42,15 +42,6 @@ class MapView(View):
         # 유저 로그인 상태일 때 True
         bo = request.user.is_authenticated
         # 사용자 검색 기록 저장
-        try:
-            address = str(request.POST['location'])
-            reu = ChangeAddress(address)
-        except:
-            loc_list = request.POST['location2'].split()
-            print('loc_list',loc_list)
-            bo = False
-
-
         if bo:
             print('여기는 오면 안된다.')
             db_user = User.objects.get(username = request.user.username) # filter | get 방식
@@ -60,14 +51,11 @@ class MapView(View):
             print('여기는 와줘라')
             pass
         ret  = {}
-        # loc_list = request.POST['location'].split()
-
-        # address = str(request.POST['location'])
-        # reu = ChangeAddress(address)
+        address = str(request.POST['location'])
+        reu = ChangeAddress(address)
         
         # 주소가 정확하지 않을 때
         try:
-            print(reu['result'])
             lat = float(reu.result[1])
             long = float(reu.result[0])
             print(lat,long)
@@ -99,8 +87,18 @@ class Mypage(ListView):
     template_name ='main/search_history.html' # 디폴트 템플릿명: <app_label>/<model_name>_list.html
     context_object_name = 'object_list' # 디폴트 컨텍스트 변수명 :  object_list
     def get_queryset(self): # 컨텍스트 오버라이딩
-        print(History.objects.order_by('created_at'))
-        return History.objects.order_by('created_at')
+        bo = self.request.user.is_authenticated
+        if bo:
+            db_user = User.objects.get(username = self.request.user.username) # filter | get 방식
+            print('dbdbdbdb',db_user)
+            return History.objects.order_by('created_at')
+        else:
+            messages.warning(self.request, "로그인이 필요한 서비스 입니다. 로그인을 해주시길 바랍니다.")
+            print('여긴 안오니이이??')
+            
+            return redirect('common:login')#render(self.request,'main/search.html')#redirect('main:search')
+        # print(History.objects.order_by('created_at'))
+        
 
 
 
