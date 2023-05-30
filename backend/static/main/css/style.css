@@ -36,11 +36,6 @@ body{
   display: inline-block;
 }
 
-
-.bg_seoul{
-  width:500px;
-}
-
 .main_div{
   width:100%;
   height:100%;
@@ -93,7 +88,7 @@ body{
 
 /* map.html 부분 CSS */
 body{
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .weather_div{

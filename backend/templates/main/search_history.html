@@ -17,7 +17,10 @@
       </script>
   {% endfor %}
   {% endif %}
-    <a href="{% url 'main:search' %}"><button class="login-button">돌아가기</button></a>
+  <button type="button" class="return-button">
+    <img src="{% static 'main/image/return.png' %}" alt="돌아가기" onclick="location.href='{% url 'main:search' %}';">
+  </button>
+  
     <div class="main_form">
         <h1>{{user.username}}님의 검색 기록</h1>
         <div class="history_data">

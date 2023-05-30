@@ -154,9 +154,33 @@ var circle = new kakao.maps.Circle({
 circle.setMap(map); 
 
 
-console.log('근처 문화유산지', result_around[1]);
+console.log('근처 문화재', result_around[1]);
 console.log('근처 여가공간', result_around[2]);
 console.log('근처 공원', result_around[3]);
+
+var positions = [
+  {
+    title: result_around[1][0].ccbaMnm1, 
+    latlng: new kakao.maps.LatLng(result_around[1][0].latitude, result_around[1][0].longtitude)
+  },
+  {
+    title: result_around[1][1].ccbaMnm1,
+    latlng: new kakao.maps.LatLng(result_around[1][1].latitude, result_around[1][1].longtitude)
+  },
+  {
+    title: result_around[1][2].ccbaMnm1, 
+    latlng: new kakao.maps.LatLng(result_around[1][2].latitude, result_around[1][2].longtitude)
+  },
+  {
+    title: result_around[1][3].ccbaMnm1,
+    latlng: new kakao.maps.LatLng(result_around[1][3].latitude, result_around[1][3].longtitude)
+  },
+  {
+    title: result_around[1][4].ccbaMnm1,
+    latlng: new kakao.maps.LatLng(result_around[1][4].latitude, result_around[1][4].longtitude)
+  }
+];
+
 // 마커가 표시될 위치입니다 
 var markerPosition  = new kakao.maps.LatLng(result_around[1][0].latitude, result_around[1][0].longtitude); 
 
