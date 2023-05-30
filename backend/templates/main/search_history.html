@@ -9,14 +9,6 @@
     <title>검색 기록</title>
 </head>
 <body>
-  {% if messages %}
-    
-  {% for message in messages %}
-      <script>
-          alert('{{ message }}');
-      </script>
-  {% endfor %}
-  {% endif %}
   <button type="button" class="return-button">
     <img src="{% static 'main/image/return.png' %}" alt="돌아가기" onclick="location.href='{% url 'main:search' %}';">
   </button>

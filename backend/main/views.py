@@ -43,12 +43,10 @@ class MapView(View):
         bo = request.user.is_authenticated
         # 사용자 검색 기록 저장
         if bo:
-            print('여기는 오면 안된다.')
             db_user = User.objects.get(username = request.user.username) # filter | get 방식
             h = History(user=db_user, search_history=request.POST['location'])
             h.save()
         else:
-            print('여기는 와줘라')
             pass
         ret  = {}
         address = str(request.POST['location'])
@@ -58,7 +56,6 @@ class MapView(View):
         try:
             lat = float(reu.result[1])
             long = float(reu.result[0])
-            print(lat,long)
         except:
             messages.warning(request, "주소가 정확하지 않습니다. 다시 입력해주세요.")
             return redirect('main:search')
@@ -80,39 +77,21 @@ class MapView(View):
                 dum = json.dumps(i,ensure_ascii=False)
                 temp.append(dum)
             ret[name] = temp
-            
+        print(ret['bike'])
         return  render(request, self.template_name, context = ret) 
     
 class Mypage(ListView):
-    template_name ='main/search_history.html' # 디폴트 템플릿명: <app_label>/<model_name>_list.html
-    context_object_name = 'object_list' # 디폴트 컨텍스트 변수명 :  object_list
-    def get_queryset(self): # 컨텍스트 오버라이딩
-        bo = self.request.user.is_authenticated
+    template_name ='main/search_history.html' 
+    def get(self,request): # 컨텍스트 오버라이딩
+        bo = request.user.is_authenticated
         if bo:
-            db_user = User.objects.get(username = self.request.user.username) # filter | get 방식
-            print('dbdbdbdb',db_user)
-            return History.objects.order_by('created_at')
+            db_user = User.objects.get(username = request.user.username)
+            db_user2 = History.objects.filter(user =  db_user) # filter | get 방식
+            context = {
+                "object_list": db_user2.order_by('created_at'),
+            }
+            return render(request, self.template_name, context = context) 
         else:
-            messages.warning(self.request, "로그인이 필요한 서비스 입니다. 로그인을 해주시길 바랍니다.")
-            print('여긴 안오니이이??')
-            
-            return redirect('common:login')#render(self.request,'main/search.html')#redirect('main:search')
-        # print(History.objects.order_by('created_at'))
+            messages.warning(request, "로그인이 필요한 서비스 입니다. 로그인을 해주시길 바랍니다.")
+            return redirect('main:search')#render(self.request,'main/search.html')#redirect('main:search')
         
-
-
-
-
-
-## 기존 코드
-# def index(request):
-#     print(123)
-#     return render(
-#         request,
-#         'main/search.html',
-#     )
-# def map(request):
-#     return render(
-#         request,
-#         'main/map.html',
-#     )

@@ -24,7 +24,7 @@
     {% else %}
     <a href="{% url 'common:login' %}"><button class="login-button">로그인</button></a>
     {% endif %}
-        <a href="{% url 'main:mypage' %}"><button class="login-button">나의 검색기록</button></a>
+        <button class="login-button" onclick = "location.href='/main/mypage/'">나의 검색기록</button>
 
     <div class="main_div">
         <img src="{% static 'main/image/logo.png' %}" style="width:300px;">
