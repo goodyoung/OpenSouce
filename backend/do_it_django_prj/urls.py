@@ -24,4 +24,5 @@ urlpatterns = [
     path('main/', include('main.urls')), #url / 경로 #main2로 함!!!
     path('common/', include('common.urls')), #로그인
     path("", RedirectView.as_view(url = "main/")), #잠시 바꿈
+    path('pybo/', include('pybo.urls')),
 ]
