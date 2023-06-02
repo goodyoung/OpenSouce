@@ -2,9 +2,9 @@
 {% load pybo_filter %}  <!-- sub: 함수를 사용 하기 위해서 -->
 {% block content %}
 <div class="container my-3">
-    <table class="table">
+    <table class="table table-secondary table-striped table-borderless table-hover">
         <thead>
-        <tr class="table-dark">
+        <tr>
             <th>번호</th>
             <th>제목</th>
             <th>작성일시</th>
@@ -20,7 +20,7 @@
             </td>
             <td>
                 <!-- a href="/pybo/{{ question.id }}" 을 url 별칭과 네임스페이스를 이용 하여 아래와 같이 바꿈 -->
-                <a href="{% url 'pybo:detail' question_id=question.id %}">{{ question.subject }}</a>
+                <a href="{% url 'pybo:detail' question_id=question.id %}" class="text-dark"><i>{{ question.subject }}</i></a>
                 {% if question.answer_set.count > 0 %}
                 <span class="text-danger small mx-2">{{ question.answer_set.count }}</span>
                 {% endif %}
@@ -52,7 +52,7 @@
         {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
         {% if page_number == question_list.number %}
         <li class="page-item active" aria-current="page">
-            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            <a class="page-link bg-success" href="?page={{ page_number }}">{{ page_number }}</a>
         </li>
         {% else %}
         <li class="page-item">
@@ -73,6 +73,6 @@
         {% endif %}
     </ul>
     <!-- 페이징처리 끝 -->
-    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+    <a href="{% url 'pybo:question_create' %}" class="btn text-secondary" style="background-color: #30E392;">질문 등록하기</a>
 </div>
 {% endblock %}
