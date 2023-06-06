@@ -139,6 +139,22 @@ window.onclick = function(event) {
   }
 }
 
+console.log('근처 따릉이', result_around[0]);
+console.log('근처 문화재', result_around[1]);
+console.log('근처 여가공간', result_around[2]);
+console.log('근처 공원', result_around[3]);
+
+
+const 내주변따릉이 = document.querySelector('.modal-content p:first-of-type');
+const 근처가볼만한곳1 = document.querySelector('.modal-content p:nth-of-type(2)');
+const 근처가볼만한곳2 = document.querySelector('.modal-content p:nth-of-type(3)');
+const 근처가볼만한곳3 = document.querySelector('.modal-content p:last-of-type');
+
+내주변따릉이.textContent = `${result_around[0][0].stationName}(${Math.round(result_around[0][0].distance)}m)`
+근처가볼만한곳1.textContent = `문화재 : ${result_around[1][0].ccbaMnm1}(${Math.round(result_around[1][0].distance)}m)`
+근처가볼만한곳2.textContent = `여가공간 : ${result_around[2][0].name}(${Math.round(result_around[2][0].distance)}m)`
+근처가볼만한곳3.textContent = `공원 : ${result_around[3][0].name}(${Math.round(result_around[3][0].distance)}m)`
+
 var circle = new kakao.maps.Circle({
   center : new kakao.maps.LatLng(my_location[1], my_location[2]),  // 원의 중심좌표 입니다 
   radius: result_around[0][4].distance, // 미터 단위의 원의 반지름입니다 
@@ -154,9 +170,7 @@ var circle = new kakao.maps.Circle({
 circle.setMap(map); 
 
 
-console.log('근처 문화재', result_around[1]);
-console.log('근처 여가공간', result_around[2]);
-console.log('근처 공원', result_around[3]);
+
 
 // 마커가 표시될 위치입니다 
 var markerPosition  = new kakao.maps.LatLng(result_around[1][0].latitude, result_around[1][0].longtitude); 

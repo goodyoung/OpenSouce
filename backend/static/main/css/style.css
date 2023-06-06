@@ -138,11 +138,10 @@ body{
   color: white;
   text-align: center;
   background-color: #4CAF50;
-  margin: 10% auto;
+  margin-top : 70px;
   padding: 10px;
   border: 1px solid #888;
-  width: 60%;
-  top: 0;
+  width: 40%;
   left: 50%;
   transform: translateX(-50%);
 }
