@@ -154,9 +154,10 @@ var circle = new kakao.maps.Circle({
 circle.setMap(map); 
 
 
-console.log('근처 문화유산지', result_around[1]);
+console.log('근처 문화재', result_around[1]);
 console.log('근처 여가공간', result_around[2]);
 console.log('근처 공원', result_around[3]);
+
 // 마커가 표시될 위치입니다 
 var markerPosition  = new kakao.maps.LatLng(result_around[1][0].latitude, result_around[1][0].longtitude); 
 
@@ -167,3 +168,49 @@ var marker = new kakao.maps.Marker({
 
 // 마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(map);
+
+
+// function ObjectCor(num){
+//   var positions=[]
+//   if (num===1){
+//     title = 'ccbaMnm1'
+//   } else{
+//     title = 'name'
+//   }
+//   for (let i = 0 ; i<5 ;i++ ){
+//     var positionsdata = new Object();
+//     corTemp = result_around[num][i]
+//     positionsdata.title = corTemp[title];
+//     positionsdata.latlng = new kakao.maps.LatLng(corTemp.latitude,corTemp.longtitude)
+//     positions.push(positionsdata)
+//   }
+//   return positions
+// }
+
+//   // aroundSet = {1:"{% static 'main/image/culture_around.png' %}",
+//   // 2:"{% static 'main/image/playground_around.png' %}",
+//   // 3:"{% static 'main/image/park_around.png' %}"}
+// aroundSet = [1,2,3]
+// for (var key in aroundSet){
+
+//   var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
+
+//   console.log('asdasdasdas',imageSrc)
+//   var positions = ObjectCor(key)
+//   for (var i = 0; i < positions.length; i ++) {
+
+//   var imageSize = new kakao.maps.Size(24, 35); 
+
+//   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+
+//   marker = new kakao.maps.Marker({
+//       map: map, // 마커를 표시할 지도
+//       position: positions[i].latlng, // 마커를 표시할 위치
+//       title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+//       image : markerImage // 마커 이미지 
+//   });
+//   marker.setMap(map);
+
+// }
+// }

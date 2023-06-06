@@ -11,7 +11,7 @@ body {
 .main_form {
     background-color: white;
     height: auto;
-    width: 700px;
+    width: 1000px;
     padding: 10px;
     margin: 0 auto;
     border-radius: 5px;
@@ -85,4 +85,12 @@ body {
 .td:hover{
     color:green;
 }
+
+.return-button{
+    float: right;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer; 
+}
+
 

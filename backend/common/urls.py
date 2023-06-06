@@ -8,5 +8,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='common/login.html'), name='login'),
     #register path도 추가해야함 template_name='common/register.html'
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('register/', views.register)
+    path('register/', views.register, name='signup'),
 ]
