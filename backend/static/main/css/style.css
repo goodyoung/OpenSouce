@@ -93,7 +93,7 @@ body{
 
 /* map.html 부분 CSS */
 body{
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .weather_div{
