@@ -172,7 +172,7 @@
 
              function ObjectCor(num){
                 var positions=[]
-                if (num===1){title = 'ccbaMnm1'
+                if (num==1){title = 'ccbaMnm1'
             }
                 else{title = 'name'
             }
@@ -202,10 +202,22 @@
                     title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                     image : markerImage // 마커 이미지 
                 });
-                marker.setMap(map);
+                
+                var iwContent2 = '<div class=\'info_window\'>'+positions[i].title+'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                var infowindow = new kakao.maps.InfoWindow({
+                  content: iwContent2,
+                  removable: false
+                })
+                kakao.maps.event.addListener(marker,'click', makeOverListener(map, marker, infowindow));
+
+
               }
+
               }
           });
+    
+
+
             var buttons = document.getElementsByClassName("toggle-button");
             buttons[0].classList.toggle("active");
             for (var i = 0; i < buttons.length; i++) {
