@@ -113,47 +113,12 @@ var clusterer = new kakao.maps.MarkerClusterer({
 });
 console.log(`4`);
 
-// 모달 열기 버튼
-var modalButton = document.getElementById("modal-button");
-
-// 모달 엘리먼트
-var modal = document.getElementById("modal");
-
-// 닫기 버튼
-var closeBtn = document.getElementsByClassName("close")[0];
-
-// 모달 열기 버튼 클릭
-modalButton.onclick = function() {
-  modal.style.display = "block";
-}
-
-// 닫기 버튼 클릭
-closeBtn.onclick = function() {
-  modal.style.display = "none";
-}
-
-// 모달 외부 클릭
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
 console.log('근처 따릉이', result_around[0]);
 console.log('근처 문화재', result_around[1]);
 console.log('근처 여가공간', result_around[2]);
 console.log('근처 공원', result_around[3]);
 
 
-const 내주변따릉이 = document.querySelector('.modal-content p:first-of-type');
-const 근처가볼만한곳1 = document.querySelector('.modal-content p:nth-of-type(2)');
-const 근처가볼만한곳2 = document.querySelector('.modal-content p:nth-of-type(3)');
-const 근처가볼만한곳3 = document.querySelector('.modal-content p:last-of-type');
-
-내주변따릉이.textContent = `${result_around[0][0].stationName}(${Math.round(result_around[0][0].distance)}m)`
-근처가볼만한곳1.textContent = `문화재 : ${result_around[1][0].ccbaMnm1}(${Math.round(result_around[1][0].distance)}m)`
-근처가볼만한곳2.textContent = `여가공간 : ${result_around[2][0].name}(${Math.round(result_around[2][0].distance)}m)`
-근처가볼만한곳3.textContent = `공원 : ${result_around[3][0].name}(${Math.round(result_around[3][0].distance)}m)`
 
 var circle = new kakao.maps.Circle({
   center : new kakao.maps.LatLng(my_location[1], my_location[2]),  // 원의 중심좌표 입니다 
@@ -171,60 +136,3 @@ circle.setMap(map);
 
 
 
-
-// 마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(result_around[1][0].latitude, result_around[1][0].longtitude); 
-
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    position: markerPosition
-});
-
-// 마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map);
-
-
-// function ObjectCor(num){
-//   var positions=[]
-//   if (num===1){
-//     title = 'ccbaMnm1'
-//   } else{
-//     title = 'name'
-//   }
-//   for (let i = 0 ; i<5 ;i++ ){
-//     var positionsdata = new Object();
-//     corTemp = result_around[num][i]
-//     positionsdata.title = corTemp[title];
-//     positionsdata.latlng = new kakao.maps.LatLng(corTemp.latitude,corTemp.longtitude)
-//     positions.push(positionsdata)
-//   }
-//   return positions
-// }
-
-//   // aroundSet = {1:"{% static 'main/image/culture_around.png' %}",
-//   // 2:"{% static 'main/image/playground_around.png' %}",
-//   // 3:"{% static 'main/image/park_around.png' %}"}
-// aroundSet = [1,2,3]
-// for (var key in aroundSet){
-
-//   var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-
-
-//   console.log('asdasdasdas',imageSrc)
-//   var positions = ObjectCor(key)
-//   for (var i = 0; i < positions.length; i ++) {
-
-//   var imageSize = new kakao.maps.Size(24, 35); 
-
-//   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-
-//   marker = new kakao.maps.Marker({
-//       map: map, // 마커를 표시할 지도
-//       position: positions[i].latlng, // 마커를 표시할 위치
-//       title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-//       image : markerImage // 마커 이미지 
-//   });
-//   marker.setMap(map);
-
-// }
-// }

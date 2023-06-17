@@ -8,7 +8,12 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
-        
+    <div class="main_logo">
+        <a href="{% url 'main:search' %}">
+            <img src="{% static 'main/image/logo.png' %}" style="width:100%; display:inline-block">
+        </a>
+    </div>
+    <div class="navbar">
         {% if user.is_authenticated %}
         <a class="nav-link" href="{% url 'common:logout' %}"><button class="login-button">{{ user.username }} (로그아웃)</button></a>
         {% else %}
@@ -16,43 +21,58 @@
         {% endif %}
         <a href="{% url 'main:mypage' %}"><button class="login-button">나의 검색기록</button></a>
         <button class="login-button" onclick = "location.href='/pybo/'">따릉이 게시판</button>
-    <h2 id="clock" class="map_clock">00:00:00</h2>
-    <div class="weather_div">
-        <div id="weather-icon"></div>
-        <div id="weather">
-            <span></span>
-            <br>
-            <span></span>
-        </div>
-    </div>
-    <div class="main_div2">
-        <a href="{% url 'main:search' %}">
-        <img src="{% static 'main/image/logo.png' %}" style="width:300px;">
-        </a>
-        <h1>따릉이와 나의 거리 조회 서비스</h1>
-        <!-- 지도를 표시할 div 입니다 -->
-        <!-- <h5>입력 받은 위치 : 광화문</h5> -->
-        <button id="modal-button" class="modal-button">주변 정보</button>
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h3>가장 가까운 따릉이 대여소</h3>
-                <p></p>
-                <h3>가장 가까운 가볼만한 문화재</h3>
-                <p></p>
-                <h3>가장 가까운 가볼만한 여가공간</h3>
-                <p></p>
-                <h3>가장 가까운 가볼만한 공원</h3>
-                <p></p>
+        <h1 id="clock" class="map_clock">00:00:00</h1>
+        <div class="weather_div">
+            <div id="weather-icon"></div>
+            <div id="weather">
+                <span></span>
+                <br>
+                <span></span>
             </div>
         </div>
-        <div id="map"></div>
-        <p>
+        <br><br>
+        <p style="float: right;">
             <input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()" /> 지적편집도 정보 보기
             <input type="checkbox" id="chkTerrain" onclick="setOverlayMapTypeId()" /> 지형정보 보기 
             <input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()" /> 교통정보 보기       
             <input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> 자전거도로 정보 보기
         </p>
+    </div>
+
+    <div class="main_div2">
+        <div id="add_info">
+            <div id="button-bar">
+                <button onclick="주변따릉이()">주변 따릉이</button>
+                <button onclick="주변문화재()">주변 문화재</button>
+                <button onclick="주변공원()">주변 공원</button>
+                <button onclick="주변여가공간()">주변 여가공간</button>
+            </div>
+            <div id="content">
+                <h3 style="text-align: center";></h3>
+                <div id="content-1">
+                    <div id="content-img1"></div>
+                    <h4></h4>
+                </div>
+                <div id="content-2">
+                    <div id="content-img2"></div>
+                    <h4></h4>
+                </div>
+                <div id="content-3">
+                    <div id="content-img3"></div>
+                    <h4></h4>
+                </div>
+                <div id="content-4">
+                    <div id="content-img4"></div>
+                    <h4></h4>
+                </div>
+                <div id="content-5">
+                    <div id="content-img5"></div>
+                    <h4></h4>
+                </div>
+            </div>
+            <h3 style="text-align: center">Made by 오소기 3조</h3>
+        </div>
+        <div id="map"></div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- appkey의 값으로 발급받은 API KEY 삽입 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
@@ -106,7 +126,7 @@
 
                 var infowindow = new kakao.maps.InfoWindow({
                   content: iwContent,
-                  removable: true
+                  removable: false
                 })
                 if ((data.totalbike[i].stationLongitude == result_around[0][0].stationLongitude)
                 || (data.totalbike[i].stationLongitude == result_around[0][1].stationLongitude) 
@@ -182,6 +202,54 @@
               }
               }
           });
+        
+        function 주변따릉이(){
+        let 정보창 = document.querySelector('#content h3');
+        정보창.textContent = '가장 가까운 따릉이 대여소 정보'
+        for(let i =0;i<5;i++){
+        let 주변따릉이 = document.querySelector(`#content-${i+1} h4`);
+        주변따릉이.innerHTML = `${result_around[0][i].stationName}<br>
+                                최단 거리: ${Math.round(result_around[0][i].distance)}m<br>
+                                이용 가능한 자전거: ${result_around[0][i].parkingBikeTotCnt}개<br>
+                                거치대 개수: ${result_around[0][i].rackTotCnt}<br>
+                                거치율: ${result_around[0][i].shared}%<br>
+                                대여소 식별 ID: ${result_around[0][i].stationId}`;
+        }
+        }
+
+        function 주변문화재(){
+        let 정보창 = document.querySelector('#content h3');
+        정보창.textContent = '가장 가까운 문화재 정보'
+        for(let i =0;i<5;i++){
+        let 주변문화재 = document.querySelector(`#content-${i+1} h4`);
+        주변문화재.innerHTML = `${result_around[1][i].ccmaName}<br>
+                                문화재 이름: ${result_around[1][i].ccbaMnm1}<br>
+                                최단 거리: ${Math.round(result_around[1][i].distance)}m<br>`
+        }
+        }
+
+        function 주변공원(){
+        let 정보창 = document.querySelector('#content h3');
+        정보창.textContent = '가장 가까운 공원 정보'
+        for(let i =0;i<5;i++){
+        let 주변공원 = document.querySelector(`#content-${i+1} h4`);
+        주변공원.innerHTML = `${result_around[3][i].name}<br>
+                                최단 거리: ${Math.round(result_around[3][i].distance)}m<br>`
+        }
+        }
+
+        function 주변여가공간(){
+        let 정보창 = document.querySelector('#content h3');
+        정보창.textContent = '가장 가까운 공원 정보'
+        for(let i =0;i<5;i++){
+        let 주변여가공간 = document.querySelector(`#content-${i+1} h4`);
+        주변여가공간.innerHTML = `${result_around[2][i].name}<br>
+                                최단 거리: ${Math.round(result_around[2][i].distance)}m<br>`
+        }
+        }
+
+        주변따릉이();
+
     </script>
     <script src="{% static 'main/js/map.js' %}"></script>
 
