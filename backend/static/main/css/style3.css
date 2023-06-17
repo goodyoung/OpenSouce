@@ -1,0 +1,192 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  
+  body{
+    position:absolute;
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+  }
+  
+  
+  
+  #search_bar input{
+    color:rgb(61, 85, 103);
+    text-align: center;
+    width: 450px;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    
+  }
+  
+  
+  #search_bar img{
+    width: 17px;
+    top: 10px;
+    right: 12px;
+    margin: 0;
+  }
+  #weather{
+    display: inline-block;
+  }
+  
+  .main_div{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .search_div{
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .search_button{
+    border:0;
+    background-color:transparent;
+  }
+  
+  .history-button,
+  .login-button {
+    float:right;
+    background-color: #30E392; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    text-align: center; 
+    text-decoration: none; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    transition-duration: 0.4s; 
+  }
+  
+  /* 버튼 호버 효과 */
+  .history-button:hover,
+  .login-button:hover {
+    background-color: #45a049; 
+  }
+  
+  /* 버튼 액티브 효과 */
+  .history-button:active,
+  .login-button:active {
+    background-color: #3e8e41; 
+    box-shadow: 0 5px #666; 
+    transform: translateY(15px); 
+  }
+  
+  
+  /* map.html 부분 CSS */
+  
+  body{
+    overflow: scroll;
+  }
+  
+  .weather_div{
+    float: left;
+  }
+  .main_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float:left;
+    height: 100px;
+    width: 10%;
+    margin: auto;
+    background-color: rgb(255, 255, 128);
+  }
+  
+  .navbar{
+    float: right;
+    height: 100px;
+    width:90%;
+    background-color: rgb(255,255,128);
+    /* border: 5px solid rgb(111, 223, 152); */
+  }
+  
+  .main_div2{
+    width:100%;
+    height:100%;
+    /* border: 5px solid red; */
+  }
+  
+  #add_info{
+    display: inline-block;
+    width:15%;
+    height:100%;
+    background-color: rgb(47,226,145);
+    /* border: 5px solid purple; */
+  }
+  
+  
+  #content-1,
+  #content-2,
+  #content-3,
+  #content-4,
+  #content-5 {
+    height: 200px;
+    border-bottom : 3px solid purple;
+  }
+  
+  #content-1{
+    border-top : 3px solid purple;
+  }
+  
+  
+  #content-img1 img,
+  #content-img2 img,
+  #content-img3 img,
+  #content-img4 img,
+  #content-img5 img
+  {
+    float:left;
+    height:200px;
+    width:150px;
+    /* border: 2px solid red; */
+  }
+  
+  #button-bar{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+  }
+  
+  #button-bar button{
+    border:0;
+    flex-grow: 1;
+    height: 50px;
+    background-color: #3e8e41; 
+  }
+  
+  #button-bar button:hover{
+    height: 50px;
+    background-color: green;
+  }
+  
+  
+   #map{
+    float:right;
+    width:85%;
+    height:100%;
+    /* border: 5px solid rgb(111, 223, 152); */
+  }
+  
+  .info_window {
+    font-size:smaller;
+    border-radius: 4px;
+    background: rgb(111, 223, 152);
+  }
+  
+  
