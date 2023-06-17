@@ -239,6 +239,8 @@
         let 정보창 = document.querySelector('#content h3');
         정보창.textContent = '가장 가까운 문화재 정보'
         for(let i =0;i<5;i++){
+        let 문화재사진 = document.querySelector(`#content-img${i+1} img`);
+        문화재사진.src=`${result_around[1][i].images}`;
         let 주변문화재 = document.querySelector(`#content-${i+1} h4`);
         주변문화재.innerHTML = `${result_around[1][i].ccmaName}<br>
                                 문화재 이름: ${result_around[1][i].ccbaMnm1}<br>
@@ -250,6 +252,8 @@
         let 정보창 = document.querySelector('#content h3');
         정보창.textContent = '가장 가까운 공원 정보'
         for(let i =0;i<5;i++){
+        let 공원사진 = document.querySelector(`#content-img${i+1} img`);
+        공원사진.src=`${result_around[3][i].images}`;
         let 주변공원 = document.querySelector(`#content-${i+1} h4`);
         주변공원.innerHTML = `${result_around[3][i].name}<br>
                                 최단 거리: ${Math.round(result_around[3][i].distance)}m<br>`
@@ -260,6 +264,8 @@
         let 정보창 = document.querySelector('#content h3');
         정보창.textContent = '가장 가까운 여가공간'
         for(let i =0;i<5;i++){
+        let 여가공간사진 = document.querySelector(`#content-img${i+1} img`);
+        여가공간사진.src=`${result_around[2][i].images}`;
         let 주변여가공간 = document.querySelector(`#content-${i+1} h4`);
         주변여가공간.innerHTML = `${result_around[2][i].name}<br>
                                 최단 거리: ${Math.round(result_around[2][i].distance)}m<br>`
