@@ -124,12 +124,36 @@
   }
   
   #add_info{
+    z-index:2;
+    position:absolute;
     display: inline-block;
-    width:15%;
+    top:100px;
+    left:0;
+    width:375px;
     height:1200px;
     background-color: rgb(47,226,145);
-    /* border: 5px solid purple; */
   }
+
+  #map{
+    float:right;
+    width:100%;
+    height:1200px;
+    /* border: 5px solid rgb(111, 223, 152); */
+  }
+
+  .map_add p{
+    display: inline-block;
+    position: fixed;
+    top: 80px;
+    right:0;
+  }
+  
+  .info_window {
+    font-size:smaller;
+    border-radius: 4px;
+    background: rgb(111, 223, 152);
+  }
+  
   
   
   #content-1,
@@ -163,6 +187,7 @@
     justify-content: space-between;
     height: 50px;
   }
+
   
   #button-bar button{
     border:0;
@@ -170,24 +195,15 @@
     height: 50px;
     background-color: #3e8e41; 
   }
+
+  #button-bar button.active{
+    background-color: rgb(0, 128, 0); 
+  }
   
   #button-bar button:hover{
     height: 50px;
     background-color: green;
   }
   
-  
-   #map{
-    float:right;
-    width:85%;
-    height:1200px;
-    /* border: 5px solid rgb(111, 223, 152); */
-  }
-  
-  .info_window {
-    font-size:smaller;
-    border-radius: 4px;
-    background: rgb(111, 223, 152);
-  }
   
   

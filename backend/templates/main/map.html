@@ -21,8 +21,8 @@
         {% endif %}
         <a href="{% url 'main:mypage' %}"><button class="login-button">나의 검색기록</button></a>
         <button class="login-button" onclick = "location.href='/pybo/'">따릉이 게시판</button>
-        <h1 id="clock" class="map_clock">00:00:00</h1>
         <div class="weather_div">
+            <h1 id="clock" class="map_clock">00:00:00</h1>
             <div id="weather-icon"></div>
             <div id="weather">
                 <span></span>
@@ -31,48 +31,52 @@
             </div>
         </div>
         <br><br>
-        <p style="float: right;">
-            <input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()" /> 지적편집도 정보 보기
-            <input type="checkbox" id="chkTerrain" onclick="setOverlayMapTypeId()" /> 지형정보 보기 
-            <input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()" /> 교통정보 보기       
-            <input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> 자전거도로 정보 보기
-        </p>
+        <div class="map_add">
+            <p>
+                <input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()" /> 지적편집도 정보 보기
+                <input type="checkbox" id="chkTerrain" onclick="setOverlayMapTypeId()" /> 지형정보 보기 
+                <input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()" /> 교통정보 보기       
+                <input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> 자전거도로 정보 보기
+            </p>
+        </div>
     </div>
 
     <div class="main_div2">
         <div id="add_info">
             <div id="button-bar">
-                <button onclick="주변따릉이()">주변 따릉이</button>
-                <button onclick="주변문화재()">주변 문화재</button>
-                <button onclick="주변공원()">주변 공원</button>
-                <button onclick="주변여가공간()">주변 여가공간</button>
+                <button class="toggle-button" onclick="주변따릉이()">주변 따릉이</button>
+                <button class="toggle-button" onclick="주변문화재()">주변 문화재</button>
+                <button class="toggle-button" onclick="주변공원()">주변 공원</button>
+                <button class="toggle-button" onclick="주변여가공간()">주변 여가공간</button>
             </div>
             <div id="content">
                 <h3 style="text-align: center";></h3>
                 <div id="content-1">
-                    <div id="content-img1"></div>
+                    <div id="content-img1"><img></div>
                     <h4></h4>
                 </div>
                 <div id="content-2">
-                    <div id="content-img2"></div>
+                    <div id="content-img2"><img></div>
                     <h4></h4>
                 </div>
                 <div id="content-3">
-                    <div id="content-img3"></div>
+                    <div id="content-img3"><img></div>
                     <h4></h4>
                 </div>
                 <div id="content-4">
-                    <div id="content-img4"></div>
+                    <div id="content-img4"><img></div>
                     <h4></h4>
                 </div>
                 <div id="content-5">
-                    <div id="content-img5"></div>
+                    <div id="content-img5"><img></div>
                     <h4></h4>
                 </div>
             </div>
             <h5 style="text-align: center">Copyright ⓒ 2023. 오소기 3조. All rights reserved.</h5>
         </div>
-        <div id="map"></div>
+
+        <div id="map"></div> <!--카카오 지도의 영역-->
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- appkey의 값으로 발급받은 API KEY 삽입 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
@@ -202,18 +206,32 @@
               }
               }
           });
-        
+            var buttons = document.getElementsByClassName("toggle-button");
+            buttons[0].classList.toggle("active");
+            for (var i = 0; i < buttons.length; i++) {
+               buttons[i].addEventListener("click", function() {
+                for (var j = 0; j < buttons.length; j++) {
+                    if (buttons[j] !== this) {
+                        buttons[j].classList.remove("active");
+                    }
+            }
+                this.classList.toggle("active");
+            });
+            }
+
         function 주변따릉이(){
         let 정보창 = document.querySelector('#content h3');
         정보창.textContent = '가장 가까운 따릉이 대여소 정보'
         for(let i =0;i<5;i++){
-        let 주변따릉이 = document.querySelector(`#content-${i+1} h4`);
-        주변따릉이.innerHTML = `${result_around[0][i].stationName}<br>
-                                최단 거리: ${Math.round(result_around[0][i].distance)}m<br>
-                                이용 가능한 자전거: ${result_around[0][i].parkingBikeTotCnt}개<br>
-                                거치대 개수: ${result_around[0][i].rackTotCnt}<br>
-                                거치율: ${result_around[0][i].shared}%<br>
-                                대여소 식별 ID: ${result_around[0][i].stationId}`;
+            let image = document.querySelector(`#content-img${i+1} img`);
+            image.src="{% static 'main/image/따릉이자전거.jpg' %}"
+            let 주변따릉이 = document.querySelector(`#content-${i+1} h4`);
+            주변따릉이.innerHTML = `${result_around[0][i].stationName}<br>
+                                    최단 거리: ${Math.round(result_around[0][i].distance)}m<br>
+                                    이용 가능한 자전거: ${result_around[0][i].parkingBikeTotCnt}개<br>
+                                    거치대 개수: ${result_around[0][i].rackTotCnt}<br>
+                                    거치율: ${result_around[0][i].shared}%<br>
+                                    대여소 식별 ID: ${result_around[0][i].stationId}`;
         }
         }
 
